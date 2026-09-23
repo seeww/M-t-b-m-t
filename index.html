@@ -1,0 +1,924 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>❤️ Một điều dành cho em</title>
+
+
+    <style>
+
+        /* =====================================
+           CÀI ĐẶT CHUNG
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            width: 100vw;
+            height: 100vh;
+
+            overflow: hidden;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #ff9aaf 0%,
+                    #ff5f82 45%,
+                    #c91445 100%
+                );
+
+        }
+
+
+        /* =====================================
+           MÀN HÌNH ĐĂNG NHẬP
+        ===================================== */
+
+        #loginScreen {
+
+            position: fixed;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff758c,
+                    #ff7eb3
+                );
+
+            z-index: 1000;
+
+        }
+
+
+        /* Hộp đăng nhập */
+
+        .loginBox {
+
+            width: min(90%, 360px);
+
+            padding: 35px 30px;
+
+            background:
+                rgba(255, 255, 255, 0.96);
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.25);
+
+            animation:
+                loginAppear 0.8s ease;
+
+        }
+
+
+        /* Tiêu đề */
+
+        .loginBox h1 {
+
+            color: #ff416c;
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* Dòng mô tả */
+
+        .loginBox p {
+
+            color: #777;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* Ô nhập */
+
+        .loginBox input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin: 7px 0;
+
+            border:
+
+                1px solid #ddd;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.2s;
+
+        }
+
+
+        .loginBox input:focus {
+
+            border-color: #ff416c;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 65, 108, 0.1);
+
+        }
+
+
+        /* Nút */
+
+        .loginBox button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 12px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff416c,
+                    #ff4b8b
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .loginBox button:hover {
+
+            transform: scale(1.03);
+
+        }
+
+
+        .loginBox button:active {
+
+            transform: scale(0.97);
+
+        }
+
+
+        /* Thông báo lỗi */
+
+        #error {
+
+            color: #e91e63;
+
+            font-size: 14px;
+
+            margin-top: 12px;
+
+            min-height: 20px;
+
+        }
+
+
+        /* Animation mở hộp */
+
+        @keyframes loginAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.8);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =====================================
+           RUNG KHI NHẬP SAI
+        ===================================== */
+
+        .shake {
+
+            animation:
+                shake 0.4s;
+
+        }
+
+
+        @keyframes shake {
+
+            0% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-10px);
+            }
+
+            40% {
+                transform: translateX(10px);
+            }
+
+            60% {
+                transform: translateX(-8px);
+            }
+
+            80% {
+                transform: translateX(8px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+
+        }
+
+
+        /* =====================================
+           TRANG TÌNH YÊU
+        ===================================== */
+
+        #loveScreen {
+
+            display: none;
+
+            width: 100%;
+            height: 100%;
+
+            position: relative;
+
+            overflow: hidden;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            color: white;
+
+        }
+
+
+        /* =====================================
+           TRÁI TIM DUY NHẤT
+        ===================================== */
+
+        .mainHeart {
+
+            position: relative;
+
+            font-size: 150px;
+
+            line-height: 1;
+
+            z-index: 10;
+
+            user-select: none;
+
+            animation:
+                heartbeat 1.2s infinite;
+
+            filter:
+
+                drop-shadow(
+                    0 0 15px
+                    rgba(255,255,255,0.5)
+                )
+
+                drop-shadow(
+                    0 0 40px
+                    rgba(255,50,100,0.7)
+                );
+
+        }
+
+
+        /* =====================================
+           NHỊP ĐẬP TRÁI TIM
+        ===================================== */
+
+        @keyframes heartbeat {
+
+            /*
+               Trạng thái bình thường
+            */
+
+            0% {
+
+                transform:
+                    scale(1);
+
+                filter:
+
+                    drop-shadow(
+                        0 0 15px
+                        rgba(255,255,255,0.5)
+                    )
+
+                    drop-shadow(
+                        0 0 30px
+                        rgba(255,50,100,0.6)
+                    );
+
+            }
+
+
+            /*
+               Nhịp đập mạnh
+            */
+
+            15% {
+
+                transform:
+                    scale(1.22);
+
+                filter:
+
+                    drop-shadow(
+                        0 0 25px
+                        rgba(255,255,255,0.85)
+                    )
+
+                    drop-shadow(
+                        0 0 70px
+                        rgba(255,50,100,1)
+                    );
+
+            }
+
+
+            /*
+               Thu lại
+            */
+
+            30% {
+
+                transform:
+                    scale(1);
+
+            }
+
+
+            /*
+               Nhịp thứ hai nhẹ hơn
+            */
+
+            45% {
+
+                transform:
+                    scale(1.12);
+
+            }
+
+
+            /*
+               Trở lại bình thường
+            */
+
+            60% {
+
+                transform:
+                    scale(1);
+
+            }
+
+
+            /*
+               Nghỉ trước nhịp tiếp theo
+            */
+
+            100% {
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =====================================
+           LỜI NHẮN
+        ===================================== */
+
+        .message {
+
+            margin-top: 35px;
+
+            z-index: 20;
+
+            animation:
+                messageAppear 2s ease;
+
+        }
+
+
+        .message h1 {
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+
+            text-shadow:
+                0 3px 15px
+                rgba(0,0,0,0.25);
+
+        }
+
+
+        .message p {
+
+            font-size: 19px;
+
+            opacity: 0.95;
+
+            padding:
+                0 20px;
+
+        }
+
+
+        /* =====================================
+           HIỆU ỨNG HIỆN LỜI NHẮN
+        ===================================== */
+
+        @keyframes messageAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================
+           ÁNH SÁNG NỀN
+        ===================================== */
+
+        #loveScreen::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            filter:
+                blur(80px);
+
+            animation:
+                backgroundGlow 2.4s infinite;
+
+        }
+
+
+        @keyframes backgroundGlow {
+
+            0% {
+
+                transform:
+                    scale(0.8);
+
+                opacity:
+                    0.4;
+
+            }
+
+            15% {
+
+                transform:
+                    scale(1.15);
+
+                opacity:
+                    0.7;
+
+            }
+
+            30% {
+
+                transform:
+                    scale(0.85);
+
+                opacity:
+                    0.4;
+
+            }
+
+            45% {
+
+                transform:
+                    scale(1.05);
+
+                opacity:
+                    0.6;
+
+            }
+
+            60% {
+
+                transform:
+                    scale(0.8);
+
+                opacity:
+                    0.4;
+
+            }
+
+            100% {
+
+                transform:
+                    scale(0.8);
+
+                opacity:
+                    0.4;
+
+            }
+
+        }
+
+
+        /* =====================================
+           ĐIỆN THOẠI
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            .mainHeart {
+
+                font-size: 110px;
+
+            }
+
+
+            .message {
+
+                margin-top: 25px;
+
+            }
+
+
+            .message h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .message p {
+
+                font-size: 17px;
+
+            }
+
+
+            .loginBox {
+
+                padding:
+                    30px 25px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================
+         MÀN HÌNH ĐĂNG NHẬP
+    ===================================== -->
+
+    <div id="loginScreen">
+
+
+        <div
+            class="loginBox"
+            id="loginBox"
+        >
+
+            <h1>
+                💌 Một chút bí mật
+            </h1>
+
+
+            <p>
+                Chỉ em, người đặc biệt mới có thể mở ❤️
+            </p>
+
+
+            <!-- HỌ VÀ TÊN -->
+
+            <input
+                type="text"
+                id="fullname"
+                placeholder="Tên của em"
+                autocomplete="off"
+            >
+
+
+            <!-- MẬT KHẨU -->
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Mật khẩu"
+            >
+
+
+            <!-- NÚT ĐĂNG NHẬP -->
+
+            <button onclick="login()">
+
+                Mở bí mật ❤️
+
+            </button>
+
+
+            <!-- BÁO LỖI -->
+
+            <div id="error"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         TRANG TÌNH YÊU
+    ===================================== -->
+
+    <div id="loveScreen">
+
+
+        <!-- TRÁI TIM DUY NHẤT -->
+
+        <div class="mainHeart">
+
+            ❤️
+
+        </div>
+
+
+        <!-- LỜI NHẮN -->
+
+        <div class="message">
+
+            <h1>
+
+                Anh yêu em ❤️
+
+            </h1>
+
+
+            <p>
+
+                Cảm ơn em vì đã xuất hiện
+                trong cuộc đời anh.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =====================================
+           TÀI KHOẢN ĐƯỢC CHỈ ĐỊNH
+        ===================================== */
+
+        const correctFullname =
+            "Tạ Thị Thúy";
+
+
+        /* =====================================
+           MẬT KHẨU ĐƯỢC CHỈ ĐỊNH
+        ===================================== */
+
+        const correctPassword =
+            "08102002";
+
+
+
+        /* =====================================
+           HÀM ĐĂNG NHẬP
+        ===================================== */
+
+        function login() {
+
+
+            /* Lấy họ tên */
+
+            const fullname =
+                document
+                    .getElementById("fullname")
+                    .value
+                    .trim();
+
+
+            /* Lấy mật khẩu */
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            /* Lấy các thành phần */
+
+            const error =
+                document
+                    .getElementById("error");
+
+
+            const loginBox =
+                document
+                    .getElementById("loginBox");
+
+
+            /* =================================
+               KIỂM TRA
+            ================================= */
+
+            if (
+
+                fullname === correctFullname &&
+
+                password === correctPassword
+
+            ) {
+
+
+                /* Ẩn màn hình đăng nhập */
+
+                document
+                    .getElementById("loginScreen")
+                    .style.display = "none";
+
+
+                /* Hiện trang tình yêu */
+
+                document
+                    .getElementById("loveScreen")
+                    .style.display = "flex";
+
+
+                /* Xóa thông báo lỗi */
+
+                error.innerText = "";
+
+
+            }
+
+            else {
+
+
+                /* Thông báo */
+
+                error.innerText =
+                    "ơ m đéo phải Thúy nhập ăn cac à";
+
+
+                /* Hiệu ứng rung */
+
+                loginBox.classList.remove("shake");
+
+
+                /*
+                   Dùng timeout để trình duyệt
+                   nhận animation mới
+                */
+
+                setTimeout(() => {
+
+                    loginBox.classList.add("shake");
+
+                }, 10);
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           NHẤN ENTER ĐỂ ĐĂNG NHẬP
+        ===================================== */
+
+        document
+            .getElementById("password")
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        login();
+
+                    }
+
+                }
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>
+```
